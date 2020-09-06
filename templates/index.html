@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container pt-3">
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome to <b>BOBCAT BOOK BUDDY!</b></h1>
+        <p class="lead">I am here to help you find more wonderful books you will love to read! Watch the video and see
+            how!</p>
+        <hr class="my-4">
+        <div class="">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/eAVBtZhzZrk" frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+
+        {% for popular in popular_list %}
+
+        <div class="col-3">
+            <div class="row mt-3">
+                {% for key, value in popular.items() %}
+                <div class="container">
+                    <div class="card flex-row flex-wrap">
+
+                        <div class="container pt-2 pb-2">
+                            <div class="container text-center">
+                                <img src="{{value.image}}" alt="" width="90" height="120">
+                            </div>
+                            <div class="card-block px-0">
+                                <div class="text-center">
+                                    {% if  (value.rating | float) < 1.3 %}
+                                    <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star-o"
+                                        style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                        style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                        style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                        style="color:lightslategrey;"></i> <small> {{value.rating}}</small>
+                                    {% elif  (value.rating | float) < 1.7 %}
+                                    <i class="fa fa-star" style="color:orangered;"></i><i class="fa fadan"></i><i
+                                        class="fa fa-star-o" style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                        style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                        style="color:lightslategrey;"></i><small> {{value.rating}}</small>
+                                    {% elif  (value.rating | float) < 2.2 %}
+                                    <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
+                                        style="color:orangered;"></i><i class="fa fa-star-o"
+                                        style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                        style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                        style="color:lightslategrey;"></i><small> {{value.rating}}</small>
+                                    {% elif  (value.rating | float) < 2.7 %}
+                                    <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
+                                        style="color:orangered;"></i><i class="fa fadan"></i><i class="fa fa-star-o"
+                                        style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                        style="color:lightslategrey;"></i><small> {{value.rating}}</small>
+                                    {% elif  (value.rating | float) < 3.2 %}
+                                    <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
+                                        style="color:orangered;"></i><i class="fa fa-star"
+                                        style="color:orangered;"></i><i class="fa fa-star-o"
+                                        style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                        style="color:lightslategrey;"></i><small> {{value.rating}}</small>
+                                    {% elif  (value.rating | float) < 3.7 %}
+                                    <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
+                                        style="color:orangered;"></i><i class="fa fa-star"
+                                        style="color:orangered;"></i><i class="fa fa-star-o"
+                                        style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                        style="color:lightslategrey;"></i><small> {{value.rating}}</small>
+                                    {% elif  (value.rating | float) < 4.2 %}
+                                    <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
+                                        style="color:orangered;"></i><i class="fa fa-star"
+                                        style="color:orangered;"></i><i class="fa fa-star"
+                                        style="color:orangered;"></i><i class="fa fa-star-o"
+                                        style="color:lightslategrey;"></i><small> {{value.rating}}</small>
+                                    {% elif  (value.rating | float) < 4.7 %}
+                                    <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
+                                        style="color:orangered;"></i><i class="fa fa-star"
+                                        style="color:orangered;"></i><i class="fa fa-star"
+                                        style="color:orangered;"></i><i class="fa fa-star-o"
+                                        style="color:lightslategrey;"></i><small> {{value.rating}}</small>
+                                    {% else %}
+                                    <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
+                                        style="color:orangered;"></i><i class="fa fa-star"
+                                        style="color:orangered;"></i><i class="fa fa-star"
+                                        style="color:orangered;"></i><i class="fa fa-star"
+                                        style="color:orangered;"></i><small> {{value.rating}}</small>
+                                    {% endif %}
+                                </div>
+                                <h6 class="card-title"><small><b>Title:</b> {{value.title}}</small></h6>
+                                <h6 class="card-title"><small><b>Author:</b> {{value.author}}</small></h6>
+
+                                <a href="/book_details/{{value.id}}" class="btn-sm btn-primary">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
