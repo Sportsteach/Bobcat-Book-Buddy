@@ -14,7 +14,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
     'DATABASE_URL', 'postgresql:///library')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'hellosecret1')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "youwillneverknow3124")
 
 connect_db(app)
 
@@ -57,7 +57,7 @@ def book_details(id):
     title = (f'%1s' % short_title)
     author = (f'%.1s' % b_author)
     title_search = "%{}%".format(title)
-    author_search = "{}%".format(author)
+    author_search = "%{}%".format(author)
 
     the_title = Inventory.query.filter(Inventory.title.ilike(title_search)). \
         filter(Inventory.author.ilike(author_search)).all()
