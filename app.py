@@ -8,7 +8,18 @@ import requests
 import re
 import os
 
-app = Flask(__name__)
+from flask import Flask
+
+my_awesome_app = Flask(__name__)
+
+
+@my_awesome_app.route('/')
+def hello_world():
+    return 'Hello World!'
+
+
+if __name__ == '__main__':
+    my_awesome_app.run()
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
     'DATABASE_URL', 'postgresql:///library')
@@ -17,8 +28,6 @@ app.config['SQLALCHEMY_ECHO'] = True
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "youwillneverknow3124")
 
 connect_db(app)
-
-"""app"""
 
 
 @app.route("/")
