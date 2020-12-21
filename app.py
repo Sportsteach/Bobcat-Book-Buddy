@@ -18,8 +18,6 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "youwillneverknow3124")
 
 connect_db(app)
 
-//
-
 
 @app.route("/")
 def homepage():
