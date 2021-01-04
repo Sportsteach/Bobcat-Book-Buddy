@@ -1,56 +1,59 @@
-from urllib.request import Request, urlopen
-import ssl
-import xml.dom.minidom
-from secrets import key
+from flask import Flask, render_template, request
+import requests
 
 
 def details_func(book_id):
-    book = book_id
-    req = Request(
-        f'https://www.goodreads.com/book/show/{book}.xml?key={key}')
-
-    ctx = ssl.create_default_context()
-    ctx.check_hostname = False
-    ctx.verify_mode = ssl.CERT_NONE
-
-    r = urlopen(req, context=ctx)
-    rString = r.read().decode("utf-8")
-
-    xmlparse = xml.dom.minidom.parseString(rString)
-    prettyxml = xmlparse.toprettyxml()
-
-    works = xmlparse.getElementsByTagName('GoodreadsResponse')
+    url = f'https://www.googleapis.com/books/v1/volumes/{book_id}'
+    response = requests.get(url)
+    works = response.json()
     book_details = []
     book_tags = ""
-    for work in works:
-        id_tag = work.getElementsByTagName('id')
-        title_tag = work.getElementsByTagName('title')
-        description_tag = work.getElementsByTagName('description')
-        if description_tag[0].firstChild == None:
-            des = 'Sorry no book summary.'
+    id_tag = works['id']
 
-        else:
-            des = (description_tag[0].childNodes[0].data)
-        author_tag = work.getElementsByTagName('name')
-        image_tag = work.getElementsByTagName('image_url')
-        average_tag = work.getElementsByTagName('average_rating')
-        isbn_tag = work.getElementsByTagName('isbn')
-        if isbn_tag[0].firstChild == None:
-            tag = "Missing"
-        else:
-            tag = (isbn_tag[0].firstChild.data)
+    try:
+        id_tag = works['id']
+    except KeyError:
+        id_tag = "KYIHM5unh3UC"
+    try:
+        title_tag = works['volumeInfo']['title']
+    except KeyError:
+        title_tag = "No Title Avalible"
+    try:
+        author_tag = works['volumeInfo']['authors'][0]
+    except KeyError:
+        author_tag = ""
+    try:
+        image_tag = works['volumeInfo']['imageLinks']['smallThumbnail']
+    except KeyError:
+        image_tag = 'https://i.imgur.com/J5LVHEL.jpg'
+    try:
+        average_tag = works['volumeInfo']['averageRating']
+    except KeyError:
+        average_tag = 0
+    try:
+        description_tag = works["volumeInfo"]["description"]
+    except KeyError:
+        description_tag = ""
+    try:
+        isbn_tag = works["volumeInfo"]["industryIdentifiers"][0]['identifier']
+    except KeyError:
+        isbn_tag = 000000
+    try:
+        category_tag = works["volumeInfo"]['categories'][0]
+    except KeyError:
+        category_tag = "Juvenile"
 
-        outer_book = {
-            book_tags: {
-                "id": (id_tag[0].firstChild.data),
-                "title": (title_tag[0].firstChild.data),
-                "author": (author_tag[0].firstChild.data),
-                "image": (image_tag[0].firstChild.data),
-                "rating": (average_tag[0].firstChild.data),
-                "description": des,
-                "isbn": tag
-            }
+    outer_book = {
+        book_tags: {
+            "id": id_tag,
+            "title": title_tag,
+            "author": author_tag,
+            "image": image_tag,
+            "rating": average_tag,
+            "description": description_tag,
+            "isbn": isbn_tag,
+            "category": category_tag
         }
-        book_details.append(outer_book)
-    r.close()
+    }
+    book_details.append(outer_book)
     return book_details

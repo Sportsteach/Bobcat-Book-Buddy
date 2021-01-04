@@ -25,55 +25,72 @@
                         <img class="card-img-top pt-1" src="{{value.image}}" alt="">
 
                         <div class="text-center">
-                            {% if  (value.rating | float) < 1.3 %}
-                            <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star-o"
+                            {% if (value.rating | float) == 0 %}
+                            <small>Rating Unavailible</small>
+                            <br>
+                            <i class="fa fa-star-o" style="color:lightslategrey;"></i><i class="fa fa-star-o"
                                 style="color:lightslategrey;"></i><i class="fa fa-star-o"
                                 style="color:lightslategrey;"></i><i class="fa fa-star-o"
                                 style="color:lightslategrey;"></i><i class="fa fa-star-o"
-                                style="color:lightslategrey;"></i> <small> {{value.rating}}</small>
-                            {% elif  (value.rating | float) < 1.7 %}
-                            <i class="fa fa-star" style="color:orangered;"></i><i class="fa fadan"></i><i
-                                class="fa fa-star-o" style="color:lightslategrey;"></i><i class="fa fa-star-o"
-                                style="color:lightslategrey;"></i><i class="fa fa-star-o"
-                                style="color:lightslategrey;"></i><small>
-                                {{value.rating}}</small>
-                            {% elif  (value.rating | float) < 2.2 %}
-                            <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
-                                style="color:orangered;"></i><i class="fa fa-star-o"
-                                style="color:lightslategrey;"></i><i class="fa fa-star-o"
-                                style="color:lightslategrey;"></i><i class="fa fa-star-o"
-                                style="color:lightslategrey;"></i><small> {{value.rating}}</small>
-                            {% elif  (value.rating | float) < 2.7 %}
-                            <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
-                                style="color:orangered;"></i><i class="fa fadan"></i><i class="fa fa-star-o"
-                                style="color:lightslategrey;"></i><i class="fa fa-star-o"
-                                style="color:lightslategrey;"></i><small> {{value.rating}}</small>
-                            {% elif  (value.rating | float) < 3.2 %}
-                            <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
-                                style="color:orangered;"></i><i class="fa fa-star" style="color:orangered;"></i><i
-                                class="fa fa-star-o" style="color:lightslategrey;"></i><i class="fa fa-star-o"
-                                style="color:lightslategrey;"></i><small> {{value.rating}}</small>
-                            {% elif  (value.rating | float) < 3.7 %}
-                            <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
-                                style="color:orangered;"></i><i class="fa fa-star" style="color:orangered;"></i><i
-                                class="fa fa-star-o" style="color:lightslategrey;"></i><i class="fa fa-star-o"
-                                style="color:lightslategrey;"></i><small> {{value.rating}}</small>
-                            {% elif  (value.rating | float) < 4.2 %}
-                            <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
-                                style="color:orangered;"></i><i class="fa fa-star" style="color:orangered;"></i><i
-                                class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star-o"
-                                style="color:lightslategrey;"></i><small> {{value.rating}}</small>
-                            {% elif  (value.rating | float) < 4.7 %}
-                            <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
-                                style="color:orangered;"></i><i class="fa fa-star" style="color:orangered;"></i><i
-                                class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star-o"
-                                style="color:lightslategrey;"></i><small> {{value.rating}}</small>
-                            {% else %}
-                            <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
-                                style="color:orangered;"></i><i class="fa fa-star" style="color:orangered;"></i><i
-                                class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
-                                style="color:orangered;"></i><small> {{value.rating}}</small>
-                            {% endif %}
+                                style="color:lightslategrey;"></i>
+                            {% elif (value.rating | float) < 1.3 %} <i class="fa fa-star" style="color:orangered;">
+                                </i><i class="fa fa-star-o" style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                    style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                    style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                    style="color:lightslategrey;"></i> <small> {{value.rating}}</small>
+                                {% elif (value.rating | float) < 1.7 %} <i class="fa fa-star" style="color:orangered;">
+                                    </i><i class="fa fadan"></i><i class="fa fa-star-o"
+                                        style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                        style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                        style="color:lightslategrey;"></i><small>
+                                        {{value.rating}}</small>
+                                    {% elif (value.rating | float) < 2.2 %} <i class="fa fa-star"
+                                        style="color:orangered;"></i><i class="fa fa-star"
+                                            style="color:orangered;"></i><i class="fa fa-star-o"
+                                            style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                            style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                            style="color:lightslategrey;"></i><small> {{value.rating}}</small>
+                                        {% elif (value.rating | float) < 2.7 %} <i class="fa fa-star"
+                                            style="color:orangered;"></i><i class="fa fa-star"
+                                                style="color:orangered;"></i><i class="fa fadan"></i><i
+                                                class="fa fa-star-o" style="color:lightslategrey;"></i><i
+                                                class="fa fa-star-o" style="color:lightslategrey;"></i><small>
+                                                {{value.rating}}</small>
+                                            {% elif (value.rating | float) < 3.2 %} <i class="fa fa-star"
+                                                style="color:orangered;"></i><i class="fa fa-star"
+                                                    style="color:orangered;"></i><i class="fa fa-star"
+                                                    style="color:orangered;"></i><i class="fa fa-star-o"
+                                                    style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                                    style="color:lightslategrey;"></i><small> {{value.rating}}</small>
+                                                {% elif (value.rating | float) < 3.7 %} <i class="fa fa-star"
+                                                    style="color:orangered;"></i><i class="fa fa-star"
+                                                        style="color:orangered;"></i><i class="fa fa-star"
+                                                        style="color:orangered;"></i><i class="fa fa-star-o"
+                                                        style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                                        style="color:lightslategrey;"></i><small>
+                                                        {{value.rating}}</small>
+                                                    {% elif (value.rating | float) < 4.2 %} <i class="fa fa-star"
+                                                        style="color:orangered;"></i><i class="fa fa-star"
+                                                            style="color:orangered;"></i><i class="fa fa-star"
+                                                            style="color:orangered;"></i><i class="fa fa-star"
+                                                            style="color:orangered;"></i><i class="fa fa-star-o"
+                                                            style="color:lightslategrey;"></i><small>
+                                                            {{value.rating}}</small>
+                                                        {% elif (value.rating | float) < 4.7 %} <i class="fa fa-star"
+                                                            style="color:orangered;"></i><i class="fa fa-star"
+                                                                style="color:orangered;"></i><i class="fa fa-star"
+                                                                style="color:orangered;"></i><i class="fa fa-star"
+                                                                style="color:orangered;"></i><i class="fa fa-star-o"
+                                                                style="color:lightslategrey;"></i><small>
+                                                                {{value.rating}}</small>
+                                                            {% else %}
+                                                            <i class="fa fa-star" style="color:orangered;"></i><i
+                                                                class="fa fa-star" style="color:orangered;"></i><i
+                                                                class="fa fa-star" style="color:orangered;"></i><i
+                                                                class="fa fa-star" style="color:orangered;"></i><i
+                                                                class="fa fa-star" style="color:orangered;"></i><small>
+                                                                {{value.rating}}</small>
+                                                            {% endif %}
                         </div>
                         <div class="text-center">
                             <small>
@@ -91,13 +108,13 @@
                             <div class="text-center">
                                 {% if the_title %}
                                 <div class="alert alert-success text-dark" role="alert">
-                                    <h5><b>"{{b_title}}"</b> is avalable at Margaret Brent!
+                                    <h5><b>"{{b_title}}"</b> is avalible at Margaret Brent!
                                     </h5>
                                 </div>
                                 {% else %}
                                 <div class="alert alert-dark" role="alert">
 
-                                    "<b>{{b_title}}</b>" is not available at Margaret Brent. <br>
+                                    "<b>{{b_title}}</b>" is not availible at Margaret Brent. <br>
                                     <a href="https://librarypoint.bibliocommons.com/v2/search?query={{b_title}}&searchType=smart&_ga=2.189890344.2017662317.1599236422-1539494952.1599236422"
                                         target="_blank" class="btn-sm btn-primary">Check Public Library</a>
                                     <br>
@@ -171,70 +188,104 @@
 
                             <div class="container pt-2 pb-2">
                                 <div class="container text-center">
-                                    <img src="{{value.image}}" alt="" width="90" height="120">
+                                    <a href="/book_details/{{value.id}}"><img src="{{value.image}}" alt="" width="90"
+                                            height="120"></a>
+
                                 </div>
-                                <div class="card-block px-0">
-                                    <!-- <div class="text-center">
-                                        {% if  (value.rating | float) < 1.3 %}
-                                        <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star-o"
-                                            style="color:lightslategrey;"></i><i class="fa fa-star-o"
-                                            style="color:lightslategrey;"></i><i class="fa fa-star-o"
-                                            style="color:lightslategrey;"></i><i class="fa fa-star-o"
-                                            style="color:lightslategrey;"></i> <small> {{value.rating}}</small>
-                                        {% elif  (value.rating | float) < 1.7 %}
-                                        <i class="fa fa-star" style="color:orangered;"></i><i class="fa fadan"></i><i
-                                            class="fa fa-star-o" style="color:lightslategrey;"></i><i
-                                            class="fa fa-star-o" style="color:lightslategrey;"></i><i
-                                            class="fa fa-star-o" style="color:lightslategrey;"></i><small>
-                                            {{value.rating}}</small>
-                                        {% elif  (value.rating | float) < 2.2 %}
-                                        <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
-                                            style="color:orangered;"></i><i class="fa fa-star-o"
-                                            style="color:lightslategrey;"></i><i class="fa fa-star-o"
-                                            style="color:lightslategrey;"></i><i class="fa fa-star-o"
-                                            style="color:lightslategrey;"></i><small> {{value.rating}}</small>
-                                        {% elif  (value.rating | float) < 2.7 %}
-                                        <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
-                                            style="color:orangered;"></i><i class="fa fadan"></i><i class="fa fa-star-o"
-                                            style="color:lightslategrey;"></i><i class="fa fa-star-o"
-                                            style="color:lightslategrey;"></i><small> {{value.rating}}</small>
-                                        {% elif  (value.rating | float) < 3.2 %}
-                                        <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
-                                            style="color:orangered;"></i><i class="fa fa-star"
-                                            style="color:orangered;"></i><i class="fa fa-star-o"
-                                            style="color:lightslategrey;"></i><i class="fa fa-star-o"
-                                            style="color:lightslategrey;"></i><small> {{value.rating}}</small>
-                                        {% elif  (value.rating | float) < 3.7 %}
-                                        <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
-                                            style="color:orangered;"></i><i class="fa fa-star"
-                                            style="color:orangered;"></i><i class="fa fa-star-o"
-                                            style="color:lightslategrey;"></i><i class="fa fa-star-o"
-                                            style="color:lightslategrey;"></i><small> {{value.rating}}</small>
-                                        {% elif  (value.rating | float) < 4.2 %}
-                                        <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
-                                            style="color:orangered;"></i><i class="fa fa-star"
-                                            style="color:orangered;"></i><i class="fa fa-star"
-                                            style="color:orangered;"></i><i class="fa fa-star-o"
-                                            style="color:lightslategrey;"></i><small> {{value.rating}}</small>
-                                        {% elif  (value.rating | float) < 4.7 %}
-                                        <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
-                                            style="color:orangered;"></i><i class="fa fa-star"
-                                            style="color:orangered;"></i><i class="fa fa-star"
-                                            style="color:orangered;"></i><i class="fa fa-star-o"
-                                            style="color:lightslategrey;"></i><small> {{value.rating}}</small>
-                                        {% else %}
-                                        <i class="fa fa-star" style="color:orangered;"></i><i class="fa fa-star"
-                                            style="color:orangered;"></i><i class="fa fa-star"
-                                            style="color:orangered;"></i><i class="fa fa-star"
-                                            style="color:orangered;"></i><i class="fa fa-star"
-                                            style="color:orangered;"></i><small> {{value.rating}}</small>
-                                        {% endif %}
-                                    </div> -->
-                                    <h6 class="card-title pt-1"><small><b>Title:</b> {{value.title}}</small></h6>
-                                    <h6 class="card-title"><small><b>Author:</b> {{value.author}}</small></h6>
+                                <div class="card-block pt-0">
                                     <div class="text-center">
-                                        <a href="/book_details/{{value.id}}" class="btn-sm btn-primary">Details</a>
+                                        {% if (value.rating | float) == 0 %}
+                                        <small>Rating Unavailible</small>
+                                        <br>
+                                        <i class="fa fa-star-o" style="color:lightslategrey;"></i><i
+                                            class="fa fa-star-o" style="color:lightslategrey;"></i><i
+                                            class="fa fa-star-o" style="color:lightslategrey;"></i><i
+                                            class="fa fa-star-o" style="color:lightslategrey;"></i><i
+                                            class="fa fa-star-o" style="color:lightslategrey;"></i>
+
+                                        {% elif (value.rating | float) < 1.3 %} <i class="fa fa-star"
+                                            style="color:orangered;"></i><i class="fa fa-star-o"
+                                                style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                                style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                                style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                                style="color:lightslategrey;"></i> <small> {{value.rating}}</small>
+                                            {% elif (value.rating | float) < 1.7 %} <i class="fa fa-star"
+                                                style="color:orangered;"></i><i class="fa fadan"></i><i
+                                                    class="fa fa-star-o" style="color:lightslategrey;"></i><i
+                                                    class="fa fa-star-o" style="color:lightslategrey;"></i><i
+                                                    class="fa fa-star-o" style="color:lightslategrey;"></i><small>
+                                                    {{value.rating}}</small>
+                                                {% elif (value.rating | float) < 2.2 %} <i class="fa fa-star"
+                                                    style="color:orangered;"></i><i class="fa fa-star"
+                                                        style="color:orangered;"></i><i class="fa fa-star-o"
+                                                        style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                                        style="color:lightslategrey;"></i><i class="fa fa-star-o"
+                                                        style="color:lightslategrey;"></i><small>
+                                                        {{value.rating}}</small>
+                                                    {% elif (value.rating | float) < 2.7 %} <i class="fa fa-star"
+                                                        style="color:orangered;"></i><i class="fa fa-star"
+                                                            style="color:orangered;"></i><i class="fa fadan"></i><i
+                                                            class="fa fa-star-o" style="color:lightslategrey;"></i><i
+                                                            class="fa fa-star-o"
+                                                            style="color:lightslategrey;"></i><small>
+                                                            {{value.rating}}</small>
+                                                        {% elif (value.rating | float) < 3.2 %} <i class="fa fa-star"
+                                                            style="color:orangered;"></i><i class="fa fa-star"
+                                                                style="color:orangered;"></i><i class="fa fa-star"
+                                                                style="color:orangered;"></i><i class="fa fa-star-o"
+                                                                style="color:lightslategrey;"></i><i
+                                                                class="fa fa-star-o"
+                                                                style="color:lightslategrey;"></i><small>
+                                                                {{value.rating}}</small>
+                                                            {% elif (value.rating | float) < 3.7 %} <i
+                                                                class="fa fa-star" style="color:orangered;"></i><i
+                                                                    class="fa fa-star" style="color:orangered;"></i><i
+                                                                    class="fa fa-star" style="color:orangered;"></i><i
+                                                                    class="fa fa-star-o"
+                                                                    style="color:lightslategrey;"></i><i
+                                                                    class="fa fa-star-o"
+                                                                    style="color:lightslategrey;"></i><small>
+                                                                    {{value.rating}}</small>
+                                                                {% elif (value.rating | float) < 4.2 %} <i
+                                                                    class="fa fa-star" style="color:orangered;"></i><i
+                                                                        class="fa fa-star"
+                                                                        style="color:orangered;"></i><i
+                                                                        class="fa fa-star"
+                                                                        style="color:orangered;"></i><i
+                                                                        class="fa fa-star"
+                                                                        style="color:orangered;"></i><i
+                                                                        class="fa fa-star-o"
+                                                                        style="color:lightslategrey;"></i><small>
+                                                                        {{value.rating}}</small>
+                                                                    {% elif (value.rating | float) < 4.7 %} <i
+                                                                        class="fa fa-star" style="color:orangered;">
+                                                                        </i><i class="fa fa-star"
+                                                                            style="color:orangered;"></i><i
+                                                                            class="fa fa-star"
+                                                                            style="color:orangered;"></i><i
+                                                                            class="fa fa-star"
+                                                                            style="color:orangered;"></i><i
+                                                                            class="fa fa-star-o"
+                                                                            style="color:lightslategrey;"></i><small>
+                                                                            {{value.rating}}</small>
+                                                                        {% else %}
+                                                                        <i class="fa fa-star"
+                                                                            style="color:orangered;"></i><i
+                                                                            class="fa fa-star"
+                                                                            style="color:orangered;"></i><i
+                                                                            class="fa fa-star"
+                                                                            style="color:orangered;"></i><i
+                                                                            class="fa fa-star"
+                                                                            style="color:orangered;"></i><i
+                                                                            class="fa fa-star"
+                                                                            style="color:orangered;"></i><small>
+                                                                            {{value.rating}}</small>
+                                                                        {% endif %}
                                     </div>
+
+                                    <h6 class="card-title"><small><b>Title:</b> {{value.title}}</small></h6>
+                                    <h6 class="card-title"><small><b>Author:</b> {{value.author}}</small></h6>
+                                    <a href="/book_details/{{value.id}}" class="btn-sm btn-primary">Details</a>
                                 </div>
                             </div>
                         </div>

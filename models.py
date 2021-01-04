@@ -14,7 +14,7 @@ class NewBook(db.Model):
     __tablename__ = "new_books"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    gb_num = db.Column(db.Integer)
+    google_id = db.Column(db.String)
     title = db.Column(db.String)
     author = db.Column(db.String)
     thumbs_up = db.Column(db.Integer)

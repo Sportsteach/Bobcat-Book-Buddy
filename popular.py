@@ -1,43 +1,110 @@
-from urllib.request import Request, urlopen
-import ssl
+from flask import Flask, render_template, request
+import requests
 import random
-import xml.dom.minidom
-from secrets import key
 
 
 def popular_func():
-    req = Request(
-        f'https://www.goodreads.com/review/list/120321158.xml?key={key}')
+    startIdx = random.randint(0, 15)
+    url = f'https://www.googleapis.com/books/v1/users/105693815034359728209/bookshelves/1001/volumes?maxResults=8&startIndex={startIdx}'
+    response = requests.get(url)
+    r = response.json()
+    items = r['items']
 
-    ctx = ssl.create_default_context()
-    ctx.check_hostname = False
-    ctx.verify_mode = ssl.CERT_NONE
+    startIdx2 = random.randint(23, 46)
+    url2 = f'https://www.googleapis.com/books/v1/users/105693815034359728209/bookshelves/1001/volumes?maxResults=8&startIndex={startIdx2}'
+    response2 = requests.get(url2)
+    r2 = response2.json()
+    items2 = r2['items']
 
-    r = urlopen(req, context=ctx)
-    rString = r.read().decode("utf-8")
-
-    xmlparse = xml.dom.minidom.parseString(rString)
-    prettyxml = xmlparse.toprettyxml()
-
-    populars = xmlparse.getElementsByTagName('book')
     pop_books = []
     pop_tags = ""
-    for popular in populars:
-        title_tag = popular.getElementsByTagName('title')
-        author_tag = popular.getElementsByTagName('name')
-        image_tag = popular.getElementsByTagName('image_url')
-        average_tag = popular.getElementsByTagName('average_rating')
-        id_tag = popular.getElementsByTagName('id')
+    for secondBooks in items2:
+        try:
+            id_tag = secondBooks['id']
+        except KeyError:
+            id_tag = "KYIHM5unh3UC"
+        try:
+            title_tag = secondBooks['volumeInfo']['title']
+        except KeyError:
+            title_tag = "No Title Avalible"
+        try:
+            author_tag = secondBooks['volumeInfo']['authors'][0]
+        except KeyError:
+            author_tag = ""
+        try:
+            image_tag = secondBooks['volumeInfo']['imageLinks']['smallThumbnail']
+        except KeyError:
+            image_tag = 'https://i.imgur.com/J5LVHEL.jpg'
+        try:
+            average_tag = secondBooks['volumeInfo']['averageRating']
+        except KeyError:
+            average_tag = 0
+        try:
+            description_tag = secondBooks["volumeInfo"]["description"]
+        except KeyError:
+            description_tag = ""
+        try:
+            isbn_tag = secondBooks["volumeInfo"]["industryIdentifiers"][0]['identifier']
+        except KeyError:
+            isbn_tag = 000000
+        try:
+            category_tag = secondBooks["volumeInfo"]['categories'][0]
+        except KeyError:
+            category_tag = "Juvenile"
+
         outer_pop = {
             pop_tags: {
-                "title": (title_tag[0].firstChild.data),
-                "author": (author_tag[0].firstChild.data),
-                "image": (image_tag[0].firstChild.data),
-                "rating": (average_tag[0].firstChild.data),
-                "id": (id_tag[0].firstChild.data)
+                "title": title_tag,
+                "author": author_tag,
+                "image": image_tag,
+                "rating": average_tag,
+                "id": id_tag
+            }
+        }
+        pop_books.append(outer_pop)
+    for firstBooks in items:
+        try:
+            id_tag = firstBooks['id']
+        except KeyError:
+            id_tag = "KYIHM5unh3UC"
+        try:
+            title_tag = firstBooks['volumeInfo']['title']
+        except KeyError:
+            title_tag = "No Title Avalible"
+        try:
+            author_tag = firstBooks['volumeInfo']['authors'][0]
+        except KeyError:
+            author_tag = ""
+        try:
+            image_tag = firstBooks['volumeInfo']['imageLinks']['smallThumbnail']
+        except KeyError:
+            image_tag = 'https://i.imgur.com/J5LVHEL.jpg'
+        try:
+            average_tag = firstBooks['volumeInfo']['averageRating']
+        except KeyError:
+            average_tag = 0
+        try:
+            description_tag = firstBooks["volumeInfo"]["description"]
+        except KeyError:
+            description_tag = ""
+        try:
+            isbn_tag = firstBooks["volumeInfo"]["industryIdentifiers"][0]['identifier']
+        except KeyError:
+            isbn_tag = 000000
+        try:
+            category_tag = firstBooks["volumeInfo"]['categories'][0]
+        except KeyError:
+            category_tag = "Juvenile"
+
+        outer_pop = {
+            pop_tags: {
+                "title": title_tag,
+                "author": author_tag,
+                "image": image_tag,
+                "rating": average_tag,
+                "id": id_tag
             }
         }
         pop_books.append(outer_pop)
         random.shuffle(pop_books)
-    r.close()
     return pop_books
