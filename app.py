@@ -6,10 +6,12 @@ from flask import Flask, request, jsonify, render_template, redirect, session, f
 from models import db, connect_db, NewBook, Inventory
 import requests
 import re
+import os
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///library'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
+    'DATABASE_URL', 'postgresql:///library')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SECRET_KEY'] = "oh-so-secret"
